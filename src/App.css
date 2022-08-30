@@ -1,38 +1,57 @@
-.App {
-  text-align: center;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  /* border: 0.5px solid blue; */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  padding: 5%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.cards_container {
+  display: grid;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 20px;
+  padding: 30px;
 }
 
-.App-link {
-  color: #61dafb;
+.card {
+  position: relative;
+
+  background-color: aliceblue;
+  width: 25vw;
+  height: 50vh;
+  margin: 10px;
+  padding: 30px;
+
+  transform-style: preserve-3d;
+  transition: 150ms;
+  transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card:hover {
+  --translate-y: -5px;
+  background-color: azure;
+}
+
+.card.flip {
+  --rotate-y: 180deg;
+}
+
+.card .front {
+  left: 0;
+}
+
+.card .front,
+.card .back {
+  position: absolute;
+  padding: 30px;
+  backface-visibility: hidden;
+}
+
+.card .back {
+  transform: rotateY(180deg);
 }
