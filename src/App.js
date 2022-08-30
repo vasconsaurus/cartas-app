@@ -11,10 +11,10 @@ function App() {
 
   const [flip, setFlip] = useState(false);
 
-  function Card({cardName, cardText, className=''}) {
+  function Card({cardName, cardText, className='', onClick}) {
 
     return (
-      <div className={className} onClick={() => setFlip(!flip)}>
+      <div className={className} onClick={onClick}>
         <h3>{cardName}</h3>
         <p>{cardText}</p>
       </div>
@@ -25,8 +25,8 @@ function App() {
     <div className="cards_container">
       {Object.entries(cardContent).map(itemArr => (
       <div className={`card ${flip ? 'flip' : ''}`}>
-        <Card className={`front`} cardName={'click me'} key={`${itemArr[0]}Front`}></Card>
-        <Card className={`back`} cardName={itemArr[0]} cardText={Object.values(itemArr[1])} key={itemArr[0]}></Card>
+        <Card className={`front`} cardName={'click me'} onClick={() => setFlip(!flip)} key={`${itemArr[0]}Front`}></Card>
+        <Card className={`back`} cardName={itemArr[0]} cardText={Object.values(itemArr[1])} onClick={() => setFlip(!flip)} key={itemArr[0]}></Card>
       </div>
       ))}
     </div>
