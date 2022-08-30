@@ -22,7 +22,7 @@ body {
   position: relative;
 
   background-color: aliceblue;
-  width: 25vw;
+  width: 30vw;
   height: 50vh;
   margin: 10px;
   padding: 30px;
@@ -47,8 +47,6 @@ body {
 
 .card .front,
 .card .back {
-  position: absolute;
-  padding: 30px;
   backface-visibility: hidden;
 }
 
