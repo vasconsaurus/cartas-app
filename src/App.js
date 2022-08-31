@@ -9,14 +9,20 @@ function App() {
     estrela: "Não é de se admirar que a estrela represente em nossas vidas sinal de luz e renovação. Sem essa âncora é possível agora caminhar em direção a uma nova vida."
   }
 
-  const [flip, setFlip] = useState(false);
 
   function Card({cardName, cardText, className='', onClick}) {
 
+    const [flip, setFlip] = useState(false);
+
     return (
-      <div className={className} onClick={onClick}>
-        <h3>{cardName}</h3>
-        <p>{cardText}</p>
+      <div className={`card ${flip ? 'flip' : ''}`}>
+        <div className="front" onClick={() => setFlip(!flip)}>
+          <h3>click me</h3>
+        </div>
+        <div className="back" onClick={() => setFlip(!flip)}>
+          <h3>{cardName}</h3>
+          <p>{cardText}</p>
+        </div>
       </div>
     );
   }
@@ -24,10 +30,7 @@ function App() {
   return (
     <div className="cards_container">
       {Object.entries(cardContent).map(itemArr => (
-      <div className={`card ${flip ? 'flip' : ''}`}>
-        <Card className={`front`} cardName={'click me'} onClick={() => setFlip(!flip)} key={`${itemArr[0]}Front`}></Card>
-        <Card className={`back`} cardName={itemArr[0]} cardText={Object.values(itemArr[1])} onClick={() => setFlip(!flip)} key={itemArr[0]}></Card>
-      </div>
+        <Card cardName={itemArr[0]} cardText={Object.values(itemArr[1])} key={itemArr[0]}></Card>
       ))}
     </div>
   );
