@@ -23,7 +23,7 @@ function App() {
 
   const shuffledCards = shuffle(Object.entries(cardContent))
 
-  function Card({cardName, cardText, className='', onClick}) {
+  function Card({...props}) {
 
     const [flip, setFlip] = useState(false);
 
@@ -33,8 +33,8 @@ function App() {
           <h3>click me</h3>
         </div>
         <div className="back" onClick={() => setFlip(!flip)}>
-          <h3>{cardName}</h3>
-          <p>{cardText}</p>
+          <h3>{props.cardName}</h3>
+          <p>{props.cardText}</p>
         </div>
       </div>
     );
