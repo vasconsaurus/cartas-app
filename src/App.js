@@ -23,7 +23,7 @@ function App() {
 
   const shuffledCards = shuffle(Object.entries(cardContent))
 
-  function Card({...props}) {
+  function Card(props) {
 
     const [flip, setFlip] = useState(false);
 
