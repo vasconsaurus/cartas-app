@@ -10,20 +10,17 @@ body {
 }
 
 .cards_container {
-  display: grid;
+  display: flex;
+  flex-flow: row wrap;
   align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  justify-content: center;
   gap: 1rem;
-  margin: 20px;
-  padding: 30px;
 }
 
 .card {
-  position: relative;
-
   background-color: aliceblue;
-  width: 30vw;
-  height: 50vh;
+  width: 240px;
+  height: 400px;
   margin: 10px;
   padding: 30px;
 
