@@ -17,7 +17,6 @@ function App() {
       result.push(copy.splice(Math.floor(Math.random() * copy.length), 1));
     }
 
-    console.log(result)
     return result;
   }
 
