@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from "react";
+import React from "react";
 import Card from "../src/components/cards/Card.js"
 
 function App() {
