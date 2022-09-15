@@ -9,8 +9,20 @@ function App() {
     estrela: "Não é de se admirar que a estrela represente em nossas vidas sinal de luz e renovação. Sem essa âncora é possível agora caminhar em direção a uma nova vida."
   }
 
+  function shuffle(array) {
+    const copy = [...array];
+    const result = [];
 
-  function Card({cardName, cardText, className='', onClick}) {
+    while (copy.length > 0) {
+      result.push(copy.splice(Math.floor(Math.random() * copy.length), 1));
+    }
+
+    return result;
+  }
+
+  const shuffledCards = shuffle(Object.entries(cardContent))
+
+  function Card({cardName, cardText}) {
 
     const [flip, setFlip] = useState(false);
 
@@ -29,8 +41,8 @@ function App() {
 
   return (
     <div className="cards_container">
-      {Object.entries(cardContent).map(itemArr => (
-        <Card cardName={itemArr[0]} cardText={Object.values(itemArr[1])} key={itemArr[0]}></Card>
+      {shuffledCards.map(itemArr => (
+        <Card cardName={itemArr[0][0]} cardText={itemArr[0][1]} key={itemArr[0]} />
       ))}
     </div>
   );
