@@ -1,4 +1,4 @@
-import 'App.css';
+import './App.css';
 import React from 'react';
 import Card from './components/cards/Card.js';
 import shuffledCards from './utils/constants/cardContent';
