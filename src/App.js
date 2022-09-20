@@ -1,15 +1,18 @@
 import './App.css';
 import './components/cards/Card.css'
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Card from './components/cards/Card.js';
-import shuffledCards from './utils/constants/cardContent';
+import handleContent from './utils/constants/cardContent';
 
 function App() {
 
+  // get promise from handleContent, useState and useEffect to work with it
+  // ref: https://stackoverflow.com/questions/72019607/reactjs-promise-to-array
+
   return (
     <div className="cards_container">
-      {shuffledCards.map(itemArr => (
-        <Card cardName={itemArr[0][0]} cardText={itemArr[0][1]} key={itemArr[0]} />
+      {cardContent.map(e => (
+        <Card cardName={'placeholder'} cardText={'placehoder'} key={'placehoder'} />
       ))}
     </div>
   );

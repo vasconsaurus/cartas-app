@@ -1,12 +1,21 @@
-import shuffle from '../helpers/shuffle.js'
+async function fetchCards() {
+  const response = await fetch(
+    "https://rws-cards-api.herokuapp.com/api/v1/cards/random?n=10", {
+      headers: {
+        Accept: 'application/json',
+      }
+    });
 
-const cardContent = {
-  lua: "A princípio, os dois cães, as duas torres e as gotas atraídas pela lua são símbolos fortíssimos que anunciam a necessidade de reflexão das direções.",
-  sol: "Não poderia ser diferente a mensagem quando o assunto é o O Sol. Sua luz é sinal de positividade e está completamente associado aos objetivos e sucesso.",
-  mundo: "É aqui que aparece as conquistas feitas, os aprendizados adquiridos, as barreiras rompidas e toda a batalha travada.",
-  estrela: "Não é de se admirar que a estrela represente em nossas vidas sinal de luz e renovação. Sem essa âncora é possível agora caminhar em direção a uma nova vida."
+    const data = await response.json();
+    return data;
 }
 
-const shuffledCards = shuffle(Object.entries(cardContent))
+async function handleContent() {
+  const { cards } =  await fetchCards();
+  const cardContent = Object.assign(
+    ...Object.entries(cards).map(([key, value]) => ({[value.name]: value.desc }))
+  )
+  return cardContent;
+}
 
-export default shuffledCards;
+export default handleContent;
