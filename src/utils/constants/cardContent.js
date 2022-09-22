@@ -1,13 +1,17 @@
 async function fetchCards() {
-  const response = await fetch(
+  try {
+    const response = await fetch(
     "https://rws-cards-api.herokuapp.com/api/v1/cards/random?n=10", {
       headers: {
         Accept: 'application/json',
       }
     });
-
     const data = await response.json();
+    console.log(data)
     return data;
+  } catch (error) {
+    console.log('error:', error)
+  }
 }
 
 async function handleContent() {

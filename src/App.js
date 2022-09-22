@@ -8,6 +8,11 @@ function App() {
 
   // get promise from handleContent, useState and useEffect to work with it
   // ref: https://stackoverflow.com/questions/72019607/reactjs-promise-to-array
+  useEffect(() => {
+    handleContent()
+  }, []);
+
+  const cardContent = [1, 2, 3]
 
   return (
     <div className="cards_container">
