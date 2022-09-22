@@ -7,19 +7,11 @@ async function fetchCards() {
       }
     });
     const data = await response.json();
-    console.log(data)
+    console.log('data', data)
     return data;
   } catch (error) {
     console.log('error:', error)
   }
 }
 
-async function handleContent() {
-  const { cards } =  await fetchCards();
-  const cardContent = Object.assign(
-    ...Object.entries(cards).map(([key, value]) => ({[value.name]: value.desc }))
-  )
-  return cardContent;
-}
-
-export default handleContent;
+export default fetchCards;

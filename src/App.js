@@ -1,23 +1,36 @@
 import './App.css';
 import './components/cards/Card.css'
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Card from './components/cards/Card.js';
-import handleContent from './utils/constants/cardContent';
+import fetchCards from './utils/constants/cardContent';
 
 function App() {
+  const [cardContent, setCardContent] = React.useState([])
 
-  // get promise from handleContent, useState and useEffect to work with it
+  // get promise from fetchCards, useState and useEffect to work with it
   // ref: https://stackoverflow.com/questions/72019607/reactjs-promise-to-array
-  useEffect(() => {
-    handleContent()
+  React.useEffect(() => {
+    const loadCardContent = async () => {
+      try {
+        const cardContent = await fetchCards();
+        setCardContent(cardContent)
+      } catch(error) {
+        console.log('error:', error)
+      }
+    };
+
+    loadCardContent();
   }, []);
 
-  const cardContent = [1, 2, 3]
+  console.log('useEffect', cardContent)
+  // console.log('useEffect', cardContent.cards[0].name)
+
+  const totalOfCards = [...Array(10).keys()]
 
   return (
     <div className="cards_container">
-      {cardContent.map(e => (
-        <Card cardName={'placeholder'} cardText={'placehoder'} key={'placehoder'} />
+      {totalOfCards.map(e => (
+        <Card cardName={cardContent.cards[e].name} cardText={cardContent.cards[e].desc} key={e} />
       ))}
     </div>
   );
